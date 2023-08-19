@@ -6,9 +6,10 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+//import javax.persistence.OneToMany;
+//import javax.persistence.OneToOne;
 
 @Entity(name="StudentL")
 public class Student {
@@ -24,10 +25,11 @@ public class Student {
 	//in Eiger fetch it fetch all columns of
 	//forign table and primary table depend upon
 	//primary table
-	@OneToMany(mappedBy="std",fetch=FetchType.EAGER)
-	private List<Laptop> laptop=new ArrayList<Laptop>();
+//	@OneToMany(mappedBy="std",fetch=FetchType.EAGER)
+//	private List<Laptop> laptop=new ArrayList<Laptop>();
 	
-	
+	@ManyToMany(mappedBy="student",fetch=FetchType.EAGER)
+	private List<Laptop> laptop;
 	
 	
 //	public Laptop getLaptop() {
@@ -41,10 +43,13 @@ public class Student {
 	public List<Laptop> getLaptop() {
 		return laptop;
 	}
+
+	
 	public void setLaptop(List<Laptop> laptop) {
 		this.laptop = laptop;
 	}
-	
+
+
 	public int getRollno() {
 		return rollno;
 	}
